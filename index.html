@@ -6,7 +6,10 @@
         <title>Etch-a-Sketch</title>
         <style>
             body {
-                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 550px;
             }
             .container {
                 display: flex;
@@ -28,7 +31,7 @@
                 container.appendChild(div);
             }
 
-            let div = document.querySelectorAll('div');
+            const div = document.querySelectorAll('div');
             div.forEach((div) => {
                 if (div != container) {
                     div.style.border = '1px solid black';
