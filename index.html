@@ -13,7 +13,7 @@
             align-items: center;
             height: 550px;
         }
-        .innerctr {
+        .innerctr, .newinnerCtr {
             display: flex;
             flex-direction: row;
             max-width: 360px;
@@ -36,37 +36,44 @@
         outerCtr.appendChild(innerCtr);
 
         let grid;
-        function createGrid() {
+            function createGrid() {
             grid = document.createElement('div');
             innerCtr.appendChild(grid);
             grid.setAttribute('class', 'grid');
-        };
-        
+            };
 
         for (let i = 1; i <= 256; i++) {
             createGrid();
         };
 
-        const style = document.querySelectorAll('div');
+        const style = document.querySelectorAll('div.grid');
         style.forEach((div) => {
-            if (div != outerCtr && div != innerCtr) {
                 div.style.border = '1px solid black';
                 div.style.width = '20px';
                 div.style.height = '20px';
                 div.addEventListener("mouseover", () => { div.style.background = "black" });
-            }
         });
 
         const btn = document.querySelector('button');
 
         btn.addEventListener('click', () => {
+            
             outerCtr.removeChild(innerCtr);
+            const newinnerCtr = document.createElement('div');
+            newinnerCtr.setAttribute('class','newinnerCtr')
+
+            let grid;
+            function createGrid() {
+            grid = document.createElement('div');
+            newinnerCtr.appendChild(grid);
+            grid.setAttribute('class', 'grid');
+            };
 
             let size = prompt('New grid size?');
 
             if (size < 100) {
-                outerCtr.appendChild(innerCtr);
-                for (let i = 1; i < size; i++) {
+                outerCtr.appendChild(newinnerCtr);
+                for (let i = 1; i <= size; i++) {
                     createGrid();
                 }
             }
