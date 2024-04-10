@@ -20,6 +20,11 @@
             max-height: 360px;
             flex-wrap: wrap;
         }
+        .grid {
+            border: #000000 1px solid;
+            width: 20px;
+            height: 20px;
+        }
     </style>
 </head>
 
@@ -48,9 +53,6 @@
 
         const style = document.querySelectorAll('div.grid');
         style.forEach((div) => {
-                div.style.border = '1px solid black';
-                div.style.width = '20px';
-                div.style.height = '20px';
                 div.addEventListener("mouseover", () => { div.style.background = "black" });
         });
 
