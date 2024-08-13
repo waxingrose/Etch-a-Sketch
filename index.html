@@ -13,13 +13,15 @@
             align-items: center;
             height: 550px;
         }
-        .innerctr, .newinnerCtr {
+
+        .container {
             display: flex;
             flex-direction: row;
             max-width: 360px;
             max-height: 360px;
             flex-wrap: wrap;
         }
+
         .grid {
             border: #000000 1px solid;
             width: 20px;
@@ -29,59 +31,62 @@
 </head>
 
 <body>
-    <button id="btn">Reset</button><br><br>
+    <button id="btn">Reset</button>
 
     <script>
+        /* creates outer and inner div containers */
         const body = document.querySelector('body');
-        const outerCtr = document.createElement('div');
-        outerCtr.setAttribute('class', 'outerctr');
-        body.appendChild(outerCtr);
-        const innerCtr = document.createElement('div');
-        innerCtr.setAttribute('class', 'innerctr');
-        outerCtr.appendChild(innerCtr);
+        const container = document.createElement('div');
+        container.setAttribute('class', 'container');
+        body.appendChild(container);
 
+        /* loop function creates grids in inner container */
         let grid;
-            function createGrid() {
+        function createGrid() {
             grid = document.createElement('div');
-            innerCtr.appendChild(grid);
+            container.appendChild(grid);
             grid.setAttribute('class', 'grid');
-            };
+        };
 
         for (let i = 1; i <= 256; i++) {
             createGrid();
         };
 
-        const style = document.querySelectorAll('div.grid');
-        style.forEach((div) => {
-                div.addEventListener("mouseover", () => { div.style.background = "black" });
-        });
+        /* function replaces inner container with new container with grids based on prompt input */
+        function ask() {
 
-        const btn = document.querySelector('button');
+            while (container.firstChild) {
+                    container.removeChild(container.firstChild);
+                }
 
-        btn.addEventListener('click', () => {
-            
-            outerCtr.removeChild(innerCtr);
-            const newinnerCtr = document.createElement('div');
-            newinnerCtr.setAttribute('class','newinnerCtr')
-
-            let grid;
-            function createGrid() {
-            grid = document.createElement('div');
-            newinnerCtr.appendChild(grid);
-            grid.setAttribute('class', 'grid');
+            let newgrid;
+            function createnewGrid() {
+                newgrid = document.createElement('div');
+                container.appendChild(newgrid);
+                newgrid.setAttribute('class', 'grid');
             };
 
             let size = prompt('New grid size?');
-
             if (size < 100) {
-                outerCtr.appendChild(newinnerCtr);
+
                 for (let i = 1; i <= size; i++) {
-                    createGrid();
+                    createnewGrid();
                 }
             }
             else {
-                null;
+                alert('maximum size exceeded.');
             }
+        }
+
+        const btn = document.querySelector('button');
+
+        /* clicking on the button runs the prompt funtion */
+        btn.addEventListener('click', ask);
+
+        /* hovering over div.grid turns grid black */
+        const style = document.querySelectorAll('div.grid');
+        style.forEach((div) => {
+            div.addEventListener("mouseover", () => { div.style.background = "black" });
         });
 
     </script>
