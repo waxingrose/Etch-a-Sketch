@@ -17,9 +17,9 @@
         .container {
             display: flex;
             flex-direction: row;
-            max-width: 360px;
-            max-height: 360px;
             flex-wrap: wrap;
+            max-width: 30%;
+            max-height: 30%;
         }
 
         .grid {
@@ -34,13 +34,13 @@
     <button id="btn">Reset</button>
 
     <script>
-        /* creates outer and inner div containers */
+        /* creates a div container */
         const body = document.querySelector('body');
         const container = document.createElement('div');
         container.setAttribute('class', 'container');
         body.appendChild(container);
 
-        /* loop function creates grids in inner container */
+        /* loop function creates grids in container */
         let grid;
         function createGrid() {
             grid = document.createElement('div');
@@ -52,7 +52,7 @@
             createGrid();
         };
 
-        /* function replaces inner container with new container with grids based on prompt input */
+        /* function removes grids and adds new grids based on prompt input */
         function ask() {
 
             while (container.firstChild) {
@@ -84,7 +84,7 @@
         btn.addEventListener('click', ask);
 
         /* hovering over div.grid turns grid black */
-        const style = document.querySelectorAll('div.grid');
+        const style = document.querySelectorAll('.grid');
         style.forEach((div) => {
             div.addEventListener("mouseover", () => { div.style.background = "black" });
         });
