@@ -76,6 +76,11 @@
             else {
                 alert('maximum size exceeded.');
             }
+
+            const style = document.querySelectorAll('.grid');
+        style.forEach((div) => {
+            div.addEventListener("mouseover", () => { div.style.background = "black" });
+        });
         }
 
         const btn = document.querySelector('button');
