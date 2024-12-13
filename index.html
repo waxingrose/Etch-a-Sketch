@@ -16,8 +16,8 @@
         .container {
             display: flex;
             flex-direction: row;
-            max-width: 700px;
-            max-height: 700px;
+            max-width: 352px;
+            max-height: 352px;
         }
 
         .row {
@@ -32,7 +32,14 @@
             border: #000000 1px solid;
             width: 20px;
             height: 20px;
+            background-color: #ffffff;
+            transition: background-color 0.5s;
         }
+
+        .grid:hover {
+            background-color: #000000;
+        }
+
     </style>
 </head>
 
@@ -105,6 +112,7 @@
                 alert('maximum size exceeded.');
             }
 
+            
             const style = document.querySelectorAll('.grid');
             style.forEach((div) => {
                 div.addEventListener("mouseover", () => { div.style.background = "black" });
@@ -120,7 +128,7 @@
         const style = document.querySelectorAll('.grid');
         style.forEach((div) => {
             div.addEventListener("mouseover", () => { div.style.background = "black" });
-        });
+        }); 
 
         /* set width and height of container to number of grids 
         let total = document.getElementsByClassName('grid');
