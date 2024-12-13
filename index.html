@@ -11,15 +11,16 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 550px;
         }
 
         .container {
             display: flex;
             flex-direction: row;
-            flex-wrap: wrap;
-            max-width: 30%;
-            max-height: 30%;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column;
         }
 
         .grid {
@@ -32,7 +33,7 @@
 
 <body>
     <button id="btn">Reset</button>
-
+    <br>
     <script>
         /* creates a div container */
         const body = document.querySelector('body');
@@ -41,36 +42,58 @@
         body.appendChild(container);
 
         /* loop function creates grids in container */
+        let row;
+        function createRow() {
+            row = document.createElement('div');
+            container.appendChild(row);
+        };
         let grid;
         function createGrid() {
-            grid = document.createElement('div');
-            container.appendChild(grid);
-            grid.setAttribute('class', 'grid');
+            grid = document.createElement('div')
+            row.appendChild(grid);
         };
 
-        for (let i = 1; i <= 256; i++) {
-            createGrid();
+        for (let i = 1; i <= 16; i++) {
+            createRow();
+            row.setAttribute('class', 'row'+i);
+
+            for (let i = 1; i <= 16; i++) {
+                createGrid();
+                grid.setAttribute('class', 'grid');
+            }
+
         };
 
         /* function removes grids and adds new grids based on prompt input */
         function ask() {
 
             while (container.firstChild) {
-                    container.removeChild(container.firstChild);
-                }
+                container.removeChild(container.firstChild);
+            }
 
-            let newgrid;
+            let newRow;
+            function createnewRow() {
+                newRow = document.createElement('div');
+                container.appendChild(newRow);
+            };
+
+            let newGrid;
             function createnewGrid() {
-                newgrid = document.createElement('div');
-                container.appendChild(newgrid);
-                newgrid.setAttribute('class', 'grid');
+                newGrid = document.createElement('div')
+                newRow.appendChild(newGrid);
             };
 
             let size = prompt('New grid size?');
             if (size < 100) {
 
                 for (let i = 1; i <= size; i++) {
-                    createnewGrid();
+                    createnewRow();
+                    newRow.setAttribute('class', 'row'+i);
+
+                    for (let i = 1; i <= size; i++) {
+                        createnewGrid();
+                        newGrid.setAttribute('class', 'grid');
+                    }
                 }
             }
             else {
@@ -78,9 +101,16 @@
             }
 
             const style = document.querySelectorAll('.grid');
-        style.forEach((div) => {
-            div.addEventListener("mouseover", () => { div.style.background = "black" });
-        });
+            style.forEach((div) => {
+                div.addEventListener("mouseover", () => { div.style.background = "black" });
+            });
+
+            let total = document.getElementsByClassName('grid');
+            size = total.length;
+            container.setAttribute('maxwidth', size ** (1 / 2) * 20 + "px");
+            container.setAttribute('maxheight', size ** (1 / 2) * 20 + "px");
+            console.log('maxwidth:' + size ** (1 / 2) * 20 + "px");
+            console.log('maxheight:' + size ** (1 / 2) * 20 + "px");
         }
 
         const btn = document.querySelector('button');
@@ -93,6 +123,14 @@
         style.forEach((div) => {
             div.addEventListener("mouseover", () => { div.style.background = "black" });
         });
+
+        /* set width and height of container to number of grids */
+        let total = document.getElementsByClassName('grid');
+        let size = total.length;
+        container.setAttribute('maxwidth', size ** (1 / 2) * 20 + "px");
+        container.setAttribute('maxheight', size ** (1 / 2) * 20 + "px");
+        console.log('maxwidth:' + size ** (1 / 2) * 20 + "px");
+        console.log('maxheight:' + size ** (1 / 2) * 20 + "px");
 
     </script>
 
