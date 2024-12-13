@@ -16,6 +16,16 @@
         .container {
             display: flex;
             flex-direction: row;
+            max-width: 700px;
+            max-height: 700px;
+        }
+
+        .row {
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 20px;
+            min-width: 0px;
+            min-height: 0px;
         }
 
         .grid {
@@ -50,7 +60,7 @@
 
         for (let i = 1; i <= 16; i++) {
             createRow();
-            row.setAttribute('class', 'row'+i);
+            row.setAttribute('class', 'row');
 
             for (let i = 1; i <= 16; i++) {
                 createGrid();
@@ -83,7 +93,7 @@
 
                 for (let i = 1; i <= size; i++) {
                     createnewRow();
-                    newRow.setAttribute('class', 'row'+i);
+                    newRow.setAttribute('class', 'row');
 
                     for (let i = 1; i <= size; i++) {
                         createnewGrid();
@@ -99,13 +109,6 @@
             style.forEach((div) => {
                 div.addEventListener("mouseover", () => { div.style.background = "black" });
             });
-
-            let total = document.getElementsByClassName('grid');
-            size = total.length;
-            container.setAttribute('maxwidth', size ** (1 / 2) * 20 + "px");
-            container.setAttribute('maxheight', size ** (1 / 2) * 20 + "px");
-            console.log('maxwidth:' + size ** (1 / 2) * 20 + "px");
-            console.log('maxheight:' + size ** (1 / 2) * 20 + "px");
         }
 
         const btn = document.querySelector('button');
@@ -119,13 +122,13 @@
             div.addEventListener("mouseover", () => { div.style.background = "black" });
         });
 
-        /* set width and height of container to number of grids */
+        /* set width and height of container to number of grids 
         let total = document.getElementsByClassName('grid');
         let size = total.length;
         container.setAttribute('maxwidth', size ** (1 / 2) * 20 + "px");
         container.setAttribute('maxheight', size ** (1 / 2) * 20 + "px");
         console.log('maxwidth:' + size ** (1 / 2) * 20 + "px");
-        console.log('maxheight:' + size ** (1 / 2) * 20 + "px");
+        console.log('maxheight:' + size ** (1 / 2) * 20 + "px"); */
 
     </script>
 
