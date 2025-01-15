@@ -16,34 +16,84 @@
         .container {
             display: flex;
             flex-direction: row;
-            max-width: 352px;
-            max-height: 352px;
+            flex: 1 1 0;
+            max-width: 400px;
+            max-height: 400px;
+            min-width: 400px;
+            min-height: 400px;
         }
 
         .row {
             display: flex;
             flex-direction: column;
-            flex: 1 1 20px;
-            min-width: 0px;
-            min-height: 0px;
+            flex: 1 1 0;
+            min-width: 0;
+            min-height: 0;
+        }
+
+        @keyframes hovereffects {
+            0% {
+                background-color: rgb(0, 0, 0, 0);
+            }
+
+            10% {
+                background-color: rgb(0, 0, 0, 0.1);
+            }
+
+            20% {
+                background-color: rgb(0, 0, 0, 0.2);
+            }
+
+            30% {
+                background-color: rgb(0, 0, 0, 0.3);
+            }
+
+            40% {
+                background-color: rgb(0, 0, 0, 0.4);
+            }
+
+            50% {
+                background-color: rgb(0, 0, 0, 0.5);
+            }
+
+            60% {
+                background-color: rgb(0, 0, 0, 0.6);
+            }
+
+            70% {
+                background-color: rgb(0, 0, 0, 0.7);
+            }
+
+            80% {
+                background-color: rgb(0, 0, 0, 0.8);
+            }
+
+            90% {
+                background-color: rgb(0, 0, 0, 0.9);
+            }
+
+            100% {
+                background-color: rgb(0, 0, 0, 1);
+            }
         }
 
         .grid {
-            border: #000000 1px solid;
-            width: 20px;
-            height: 20px;
-            background-color: #ffffff;
-            transition: background-color 0.5s;
+            border: #cccccc 1px solid;
+            width: auto;
+            aspect-ratio: 1;
+            animation-name: hovereffects;
+            animation-duration: 10s;
+            animation-play-state: paused;
         }
 
         .grid:hover {
-            background-color: #000000;
+            animation-play-state: running;
         }
-
     </style>
 </head>
 
 <body>
+    <h1>Etch a Sketch</h1>
     <button id="btn">Reset</button>
     <br>
     <script>
@@ -112,31 +162,11 @@
                 alert('maximum size exceeded.');
             }
 
-            
-            const style = document.querySelectorAll('.grid');
-            style.forEach((div) => {
-                div.addEventListener("mouseover", () => { div.style.background = "black" });
-            });
         }
 
-        const btn = document.querySelector('button');
-
         /* clicking on the button runs the prompt funtion */
+        const btn = document.querySelector('button');
         btn.addEventListener('click', ask);
-
-        /* hovering over div.grid turns grid black */
-        const style = document.querySelectorAll('.grid');
-        style.forEach((div) => {
-            div.addEventListener("mouseover", () => { div.style.background = "black" });
-        }); 
-
-        /* set width and height of container to number of grids 
-        let total = document.getElementsByClassName('grid');
-        let size = total.length;
-        container.setAttribute('maxwidth', size ** (1 / 2) * 20 + "px");
-        container.setAttribute('maxheight', size ** (1 / 2) * 20 + "px");
-        console.log('maxwidth:' + size ** (1 / 2) * 20 + "px");
-        console.log('maxheight:' + size ** (1 / 2) * 20 + "px"); */
 
     </script>
 
