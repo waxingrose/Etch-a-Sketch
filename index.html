@@ -16,7 +16,6 @@
         .container {
             display: flex;
             flex-direction: row;
-            flex: 1 1 0;
             max-width: 400px;
             max-height: 400px;
             min-width: 400px;
@@ -26,9 +25,7 @@
         .row {
             display: flex;
             flex-direction: column;
-            flex: 1 1 0;
-            min-width: 0;
-            min-height: 0;
+            flex: 1 1 0; /* so that child grows and shrinks by 1 */
         }
 
         @keyframes hovereffects {
@@ -129,7 +126,10 @@
         /* function removes grids and adds new grids based on prompt input */
         function ask() {
 
-            while (container.firstChild) {
+            let size = prompt('New grid size?');
+            if (size <= 100) {
+
+                while (container.firstChild) {
                 container.removeChild(container.firstChild);
             }
 
@@ -145,9 +145,6 @@
                 newRow.appendChild(newGrid);
             };
 
-            let size = prompt('New grid size?');
-            if (size < 100) {
-
                 for (let i = 1; i <= size; i++) {
                     createnewRow();
                     newRow.setAttribute('class', 'row');
@@ -158,8 +155,13 @@
                     }
                 }
             }
+            else if (size > 100) {
+                alert('exceeded maximum size allowed');
+                null;
+            }
             else {
-                alert('maximum size exceeded.');
+                alert('?');
+                null;
             }
 
         }
